@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="Sdp">
+        <HintPath>libs\Sdp.dll</HintPath>
+      </Reference>
+      <Analyzer Include="libs\Sdp.SourceGenerator.dll" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="StaticData\SampleCsvs\" />
+    </ItemGroup>
+
+    <Target Name="RunExcelColumnExtractor" BeforeTargets="PrepareForBuild">
+        <MakeDir Directories="$(ProjectDir)StaticData\SampleCsvs" />
+        <Exec Command="&quot;$(ProjectDir)..\Tools\ExcelColumnExtractor.exe&quot; -r &quot;$(ProjectDir)StaticData\SampleRecords&quot; -e &quot;$(ProjectDir)StaticData\SampleExcels&quot; -o &quot;$(ProjectDir)StaticData\SampleCsvs&quot; -s C7 --force" />
+    </Target>
+
+    <Target Name="CopyStaticDataCsvs" AfterTargets="Build">
+        <ItemGroup>
+            <_StaticDataCsv Include="$(ProjectDir)StaticData\SampleCsvs\*.csv" />
+        </ItemGroup>
+        <RemoveDir Directories="$(OutputPath)StaticData" />
+        <Copy SourceFiles="@(_StaticDataCsv)" DestinationFolder="$(OutputPath)StaticData" />
+    </Target>
+
+</Project>

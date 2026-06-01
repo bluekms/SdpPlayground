@@ -427,6 +427,7 @@ Tools/*.exe
 
 # StaticDataPipeline (build-time generated CSVs from SampleExcels)
 First/StaticData/SampleCsvs/
+Second/StaticData/SampleCsvs/
 
 # Linux
 *~
