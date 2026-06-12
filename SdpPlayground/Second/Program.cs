@@ -1,6 +1,7 @@
 using System.Text;
 using Second.StaticData.Tables;
 using Microsoft.Extensions.Logging.Abstractions;
+using Second.StaticData;
 
 namespace Second;
 
@@ -10,7 +11,7 @@ internal class Program
     {
         Console.OutputEncoding = Encoding.UTF8;
 
-        var staticData = new StaticData.StaticData(NullLogger.Instance);
+        var staticData = new SchoolStaticData(NullLogger.Instance);
 
         try
         {
