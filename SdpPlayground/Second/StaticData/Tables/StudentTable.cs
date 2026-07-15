@@ -3,4 +3,4 @@ using Sdp.Table;
 
 namespace Second.StaticData.Tables;
 
-public sealed partial class StudentTable : StaticDataTable<StudentTable, StudentRecord>;
+public sealed partial class StudentTable : StaticDataTable<StudentRecord>;
