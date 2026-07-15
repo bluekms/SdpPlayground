@@ -13,8 +13,8 @@ public sealed partial record ContactInfo(
     [NullString("")] string? Phone);
 
 [StaticDataRecord("Excel", "School")]
-public sealed partial record School(
-    School.SchoolId Id,
+public sealed partial record SchoolRecord(
+    SchoolRecord.SchoolId Id,
     string Name,
     Address Address,
     ContactInfo Contact,
@@ -25,8 +25,8 @@ public sealed partial record School(
 }
 
 [StaticDataRecord("Excel", "Teacher")]
-public sealed partial record Teacher(
-    Teacher.TeacherId Id,
+public sealed partial record TeacherRecord(
+    TeacherRecord.TeacherId Id,
     string Name,
     [ForeignKey("SchoolTable", "Name")] string SchoolName)
 {
@@ -34,11 +34,11 @@ public sealed partial record Teacher(
 }
 
 [StaticDataRecord("Excel", "Student")]
-public sealed partial record Student(
-    Student.StudentId Id,
+public sealed partial record StudentRecord(
+    StudentRecord.StudentId Id,
     [ColumnName("Name")] string 이름,
-    [ForeignKey("SchoolTable", "Id")] School.SchoolId SchoolId,
-    [ForeignKey("TeacherTable", "Id")] Teacher.TeacherId TeacherId)
+    [ForeignKey("SchoolTable", "Id")] SchoolRecord.SchoolId SchoolId,
+    [ForeignKey("TeacherTable", "Id")] TeacherRecord.TeacherId TeacherId)
 {
     public record struct StudentId(int Value);
 }

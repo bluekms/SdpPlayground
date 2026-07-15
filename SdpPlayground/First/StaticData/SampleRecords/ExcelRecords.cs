@@ -28,7 +28,7 @@ public sealed record School(
 public sealed record Teacher(
     Teacher.TeacherId Id,
     string Name,
-    [ForeignKey("School", "Name")] string SchoolName)
+    [ForeignKey("SchoolTable", "Name")] string SchoolName)
 {
     public record struct TeacherId(int Value);
 }
@@ -37,8 +37,8 @@ public sealed record Teacher(
 public sealed record Student(
     Student.StudentId Id,
     [ColumnName("Name")] string 이름,
-    [ForeignKey("School", "Id")] School.SchoolId SchoolId,
-    [ForeignKey("Teacher", "Id")] Teacher.TeacherId TeacherId)
+    [ForeignKey("SchoolTable", "Id")] School.SchoolId SchoolId,
+    [ForeignKey("TeacherTable", "Id")] Teacher.TeacherId TeacherId)
 {
     public record struct StudentId(int Value);
 }

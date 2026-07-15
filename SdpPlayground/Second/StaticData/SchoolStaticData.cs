@@ -4,8 +4,8 @@ using Sdp.Manager;
 
 namespace Second.StaticData;
 
-public sealed partial class StaticData(ILogger logger)
-    : StaticDataManager<StaticData.TableSet>(logger)
+public sealed partial class SchoolStaticData(ILogger logger)
+    : StaticDataManager<SchoolStaticData.TableSet>(logger)
 {
     public sealed partial record TableSet(
         SchoolTable? SchoolTable,
